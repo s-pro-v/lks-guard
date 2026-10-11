@@ -116,7 +116,8 @@
     "#L-shield-badge:hover{transform:translateY(-2px);border-color:var(--highlight-color)}" +
     "#L-shield-badge.badge-ok{border-top-color:var(--success-color)}" +
     "#L-shield-badge.badge-ok:hover{border-color:var(--success-color)}" +
-    ".badge-icon{width:12px;height:12px;display:flex;align-items:center;justify-content:center;fill:currentColor}" +
+    ".badge-icon{width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}" +
+    ".badge-icon svg{width:18px;height:18px;display:block}" +
     ".badge-label{font-size:9px;font-weight:800;letter-spacing:0.06em;font-family:var(--font-code);color:var(--text-color);text-transform:uppercase}" +
     ".badge-status{font-size:8px;font-weight:700;color:var(--highlight-color);padding:1px 4px;background:var(--card-bg);border:1px solid var(--border-color)}" +
     "#L-shield-badge.badge-ok .badge-status{color:var(--success-color)}" +
@@ -543,7 +544,24 @@
     badge.id = "L-shield-badge";
     badge.title = "LKS Guard: Kliknij, aby otworzyć panel weryfikacji";
     badge.innerHTML =
-      '<svg class="badge-icon" viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5zm0 17.9c-3.7-1.1-6.8-4.8-6.9-8.9V8.4l6.9-3.8 6.9 3.8v2.6c-.1 4.1-3.2 7.8-6.9 8.9z"/></svg>' +
+      '<span class="badge-icon">' +
+      '<svg style="filter:drop-shadow(0px 2px 1px rgba(0,0,0,1));" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
+      '  <g fill="none" class="nc-icon-wrapper">' +
+      '    <path d="M23.0002 4.00002C23.0002 4.31476 22.852 4.61115 22.6002 4.8L20.9998 6.00033L18.1599 5.59448C17.8299 5.54732 17.547 5.83019 17.5942 6.16019L18 9.00016L11.7072 15.293C11.3167 15.6835 10.6837 15.6834 10.2931 15.293L8.20719 13.207C7.81668 12.8165 7.81668 12.1835 8.20719 11.793L18.7073 1.29289C18.8948 1.10536 19.1492 1 19.4144 1H22.0002C22.5524 1 23.0002 1.44772 23.0002 2V4.00002Z" fill="url(#1760519092858-28138_key_existing_0_89vm6gk4r)" data-glass="origin" mask="url(#1760519092858-28138_key_mask_hfb7n1fm5)"></path>' +
+      '    <path d="M23.0002 4.00002C23.0002 4.31476 22.852 4.61115 22.6002 4.8L20.9998 6.00033L18.1599 5.59448C17.8299 5.54732 17.547 5.83019 17.5942 6.16019L18 9.00016L11.7072 15.293C11.3167 15.6835 10.6837 15.6834 10.2931 15.293L8.20719 13.207C7.81668 12.8165 7.81668 12.1835 8.20719 11.793L18.7073 1.29289C18.8948 1.10536 19.1492 1 19.4144 1H22.0002C22.5524 1 23.0002 1.44772 23.0002 2V4.00002Z" fill="url(#1760519092858-28138_key_existing_0_89vm6gk4r)" data-glass="clone" filter="url(#1760519092858-28138_key_filter_vrokh4qdk)" clip-path="url(#1760519092858-28138_key_clipPath_zohksksb4)"></path>' +
+      '    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 10C11.0899 10 14 12.9101 14 16.5C14 20.0899 11.0899 23 7.5 23C3.91015 23 1 20.0899 1 16.5C1 12.9101 3.91015 10 7.5 10Z" fill="url(#1760519092858-28138_key_existing_1_h5w2sv3tw)" data-glass="blur"></path>' +
+      '    <path d="M7.5 10C11.0899 10 14 12.9101 14 16.5C14 20.0899 11.0899 23 7.5 23C3.91015 23 1 20.0899 1 16.5C1 12.9101 3.91015 10 7.5 10ZM7.5 10.75C4.32436 10.75 1.75 13.3244 1.75 16.5C1.75 19.6756 4.32436 22.25 7.5 22.25C10.6756 22.25 13.25 19.6756 13.25 16.5C13.25 13.3244 10.6756 10.75 7.5 10.75Z" fill="url(#1760519092858-28138_key_existing_2_0zeg79t9r)"></path>' +
+      '    <defs>' +
+      '      <linearGradient id="1760519092858-28138_key_existing_0_89vm6gk4r" x1="15.457" y1="1" x2="15.457" y2="15.586" gradientUnits="userSpaceOnUse"><stop stop-color="#575757"></stop><stop offset="1" stop-color="#343434"></stop></linearGradient>' +
+      '      <linearGradient id="1760519092858-28138_key_existing_1_h5w2sv3tw" x1="7.5" y1="10" x2="7.5" y2="23" gradientUnits="userSpaceOnUse"><stop stop-color="#ff950099"></stop><stop offset="1" stop-color="#cc770099"></stop></linearGradient>' +
+      '      <linearGradient id="1760519092858-28138_key_existing_2_0zeg79t9r" x1="7.5" y1="10" x2="7.5" y2="17.528" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"></stop><stop offset="1" stop-color="#fff" stop-opacity="0"></stop></linearGradient>' +
+      '      <filter id="1760519092858-28138_key_filter_vrokh4qdk" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse"><feGaussianBlur stdDeviation="2" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter>' +
+      '      <clipPath id="1760519092858-28138_key_clipPath_zohksksb4"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 10C11.0899 10 14 12.9101 14 16.5C14 20.0899 11.0899 23 7.5 23C3.91015 23 1 20.0899 1 16.5C1 12.9101 3.91015 10 7.5 10Z"></path></clipPath>' +
+      '      <mask id="1760519092858-28138_key_mask_hfb7n1fm5"><rect width="100%" height="100%" fill="#FFF"></rect><path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 10C11.0899 10 14 12.9101 14 16.5C14 20.0899 11.0899 23 7.5 23C3.91015 23 1 20.0899 1 16.5C1 12.9101 3.91015 10 7.5 10Z" fill="#000"></path></mask>' +
+      '    </defs>' +
+      '  </g>' +
+      '</svg>' +
+      '</span>' +
       '<span class="badge-label">LKS</span>' +
       '<span class="badge-led"></span>' +
       '<span id="L-badge-status" class="badge-status">VALID</span>';
