@@ -112,17 +112,12 @@
     ".gate-window-foot{padding:8px 10px;background:var(--card-bg);border-top:1px solid var(--border-color);display:flex;align-items:center;justify-content:space-between;gap:8px}" +
     ".gate-foot-meta{font-size:8.5px;font-family:var(--font-code);color:var(--text-muted);display:flex;align-items:center;gap:6px}" +
     ".gate-led{width:6px;height:6px;background:var(--highlight-color);box-shadow:0 0 6px var(--highlight-color);display:inline-block}" +
-    "#L-shield-badge{position:fixed;bottom:14px;right:14px;z-index:999999;display:none;align-items:center;gap:6px;background:var(--panel-bg);border:1px solid var(--border-color);border-top:2px solid var(--highlight-color);box-shadow:var(--shadow-drop);padding:4px 8px;cursor:pointer;font-family:var(--font-main);color:var(--text-color);transition:transform 0.2s ease,border-color 0.2s ease}" +
+    "#L-shield-badge{position:fixed;bottom:14px;right:14px;z-index:999999;display:none;align-items:center;justify-content:center;width:34px;height:34px;background:var(--panel-bg);border:1px solid var(--border-color);border-top:2px solid var(--highlight-color);box-shadow:var(--shadow-drop);padding:0;cursor:pointer;transition:transform 0.2s ease,border-color 0.2s ease}" +
     "#L-shield-badge:hover{transform:translateY(-2px);border-color:var(--highlight-color)}" +
     "#L-shield-badge.badge-ok{border-top-color:var(--success-color)}" +
     "#L-shield-badge.badge-ok:hover{border-color:var(--success-color)}" +
-    ".badge-icon{width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}" +
-    ".badge-icon svg{width:18px;height:18px;display:block}" +
-    ".badge-label{font-size:9px;font-weight:800;letter-spacing:0.06em;font-family:var(--font-code);color:var(--text-color);text-transform:uppercase}" +
-    ".badge-status{font-size:8px;font-weight:700;color:var(--highlight-color);padding:1px 4px;background:var(--card-bg);border:1px solid var(--border-color)}" +
-    "#L-shield-badge.badge-ok .badge-status{color:var(--success-color)}" +
-    ".badge-led{width:5px;height:5px;background:var(--highlight-color);box-shadow:0 0 5px var(--highlight-color);display:inline-block}" +
-    "#L-shield-badge.badge-ok .badge-led{background:var(--success-color);box-shadow:0 0 5px var(--success-color)}";
+    ".badge-icon{width:22px;height:22px;display:flex;align-items:center;justify-content:center}" +
+    ".badge-icon svg{width:22px;height:22px;display:block}";
 
   function sty() {
     if ($("Z")) return;
@@ -545,7 +540,7 @@
     badge.title = "LKS Guard: Kliknij, aby otworzyć panel weryfikacji";
     badge.innerHTML =
       '<span class="badge-icon">' +
-      '<svg style="filter:drop-shadow(0px 2px 1px rgba(0,0,0,1));" width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
+      '<svg style="filter:drop-shadow(0px 2px 1px rgba(0,0,0,1));" width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
       '  <g fill="none" class="nc-icon-wrapper">' +
       '    <path d="M23.0002 4.00002C23.0002 4.31476 22.852 4.61115 22.6002 4.8L20.9998 6.00033L18.1599 5.59448C17.8299 5.54732 17.547 5.83019 17.5942 6.16019L18 9.00016L11.7072 15.293C11.3167 15.6835 10.6837 15.6834 10.2931 15.293L8.20719 13.207C7.81668 12.8165 7.81668 12.1835 8.20719 11.793L18.7073 1.29289C18.8948 1.10536 19.1492 1 19.4144 1H22.0002C22.5524 1 23.0002 1.44772 23.0002 2V4.00002Z" fill="url(#1760519092858-28138_key_existing_0_89vm6gk4r)" data-glass="origin" mask="url(#1760519092858-28138_key_mask_hfb7n1fm5)"></path>' +
       '    <path d="M23.0002 4.00002C23.0002 4.31476 22.852 4.61115 22.6002 4.8L20.9998 6.00033L18.1599 5.59448C17.8299 5.54732 17.547 5.83019 17.5942 6.16019L18 9.00016L11.7072 15.293C11.3167 15.6835 10.6837 15.6834 10.2931 15.293L8.20719 13.207C7.81668 12.8165 7.81668 12.1835 8.20719 11.793L18.7073 1.29289C18.8948 1.10536 19.1492 1 19.4144 1H22.0002C22.5524 1 23.0002 1.44772 23.0002 2V4.00002Z" fill="url(#1760519092858-28138_key_existing_0_89vm6gk4r)" data-glass="clone" filter="url(#1760519092858-28138_key_filter_vrokh4qdk)" clip-path="url(#1760519092858-28138_key_clipPath_zohksksb4)"></path>' +
@@ -561,10 +556,7 @@
       '    </defs>' +
       '  </g>' +
       '</svg>' +
-      '</span>' +
-      '<span class="badge-label">LKS</span>' +
-      '<span class="badge-led"></span>' +
-      '<span id="L-badge-status" class="badge-status">VALID</span>';
+      '</span>';
 
     badge.addEventListener("click", showModal);
 
