@@ -16,8 +16,8 @@
     lockStyle.id = "L-lock-guard";
     lockStyle.textContent =
       "html:not(.lks-guard-passed),html:not(.lks-guard-passed) body{overflow:hidden!important;height:100%!important;pointer-events:none!important;user-select:none!important}" +
-      "html:not(.lks-guard-passed) body>*:not(#L0){visibility:hidden!important;opacity:0!important;pointer-events:none!important;filter:blur(20px)!important}" +
-      "#L0{visibility:visible!important;opacity:1!important;pointer-events:auto!important}";
+      "html:not(.lks-guard-passed) body>*:not(#L0):not(#L-shield-badge){visibility:hidden!important;opacity:0!important;pointer-events:none!important;filter:blur(20px)!important}" +
+      "html:not(.lks-guard-passed) #L0{visibility:visible!important;opacity:1!important;pointer-events:auto!important;display:flex!important}";
     (d.head || d.documentElement).appendChild(lockStyle);
   }
 
@@ -55,7 +55,7 @@
     ":root[theme=\"light\"]{--bg-color:#f8f9fa;--panel-bg:#f0f0f2;--card-bg:#ffffff;--bg-secondary:#e9ecef;--bg-tertiary:#e8e8e8;--border-color:#ced4da;--border-color-hover:#adb5bd;--hover-bg:#e2e6ea;--text-color:#212529;--text-muted:#6c757d;--shadow-drop:rgba(0,0,0,0.25) 0px 1px 2px 0px,rgba(78,78,78,0.15) 0px 2px 5px 1px;--shadow-inset:inset rgba(78,78,78,0.18) 0px 2px 5px 1px,inset rgba(0,0,0,0.25) 0px 1px 2px 0px;--shadow-hover:rgba(32,32,32,0.2) 0px 0px 0px 1px,rgba(0,0,0,0.3) 0px 2px 4px -0.5px;--bg-mode:repeating-linear-gradient(-45deg,transparent,transparent 10px,rgba(0,0,0,0.03) 10px,rgba(0,0,0,0.03) 11px);--bg-grid:linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px)}" +
     "#L0 *{box-sizing:border-box;border-radius:0 !important;user-select:none;outline:none}#L-shield-badge *{box-sizing:border-box;border-radius:0 !important;user-select:none;outline:none}" +
     "#L0{position:fixed;inset:0;z-index:99999999;display:flex;align-items:center;justify-content:center;background:#0e0e0e;background-image:linear-gradient(135deg,rgba(243,108,0,0.07) 0%,transparent 45%,rgba(243,108,0,0.03) 100%),var(--bg-grid),var(--bg-img);background-size:auto,var(--bg-grid-size),cover;background-position:center;padding:16px;opacity:1;visibility:visible;transition:opacity 0.25s ease,visibility 0.25s ease}" +
-    "#L0.d{opacity:0;visibility:hidden;pointer-events:none}" +
+    "#L0.d{display:none !important;opacity:0 !important;visibility:hidden !important;pointer-events:none !important}" +
     "#L1{position:relative;width:100%;max-width:440px;background:var(--panel-bg);border:1px solid var(--border-color);border-top:3px solid var(--highlight-color);box-shadow:var(--shadow-drop);display:flex;flex-direction:column;transition:border-color 0.3s ease;font-family:var(--font-main)}" +
     ".lks-bracket{position:absolute;width:12px;height:12px;border:2px solid var(--highlight-color);pointer-events:none;z-index:20;transition:border-color 0.3s ease}" +
     ".lks-bracket.tl{top:-1px;left:-1px;border-right:none;border-bottom:none}" +
@@ -237,9 +237,22 @@
     e.classList.add("lks-guard-passed");
     e.classList.remove("lks-page-loading");
 
+    // Usunięcie tymczasowej twardej blokady stylów
+    var lock = $("L-lock-guard");
+    if (lock) {
+      try {
+        lock.remove();
+      } catch (err) {
+        lock.disabled = true;
+      }
+    }
+
     // Ukryj modal i pokaż tarczę w rogu
     var o = $("L0");
-    if (o) o.classList.add("d");
+    if (o) {
+      o.classList.add("d");
+      o.style.display = "none";
+    }
 
     var closeBtn = $("L-close");
     if (closeBtn) closeBtn.style.display = "inline-block";
@@ -251,7 +264,11 @@
   function showModal() {
     if (!sessOk()) return;
     var o = $("L0");
-    if (o) o.classList.remove("d");
+    if (o) {
+      o.style.display = "flex";
+      void o.offsetWidth; // wymuszenie reflow dla płynnego pojawienia się
+      o.classList.remove("d");
+    }
   }
 
   function redir(isSessionExpire) {
@@ -576,13 +593,20 @@
     e.appendChild(o);
     e.appendChild(badge);
 
+    // Zamknięcie po kliknięciu w tło modala (tylko po autoryzacji)
+    o.addEventListener("click", function (ev) {
+      if (ev.target === o && sessOk()) {
+        hide();
+      }
+    });
+
     var closeBtn = $("L-close");
     if (closeBtn) {
       closeBtn.addEventListener("click", function (ev) {
         ev.stopPropagation();
         // Zamknięcie dozwolone TYLKO po zalogowaniu
         if (sessOk()) {
-          o.classList.add("d");
+          hide();
         }
       });
     }
